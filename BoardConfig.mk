@@ -48,6 +48,15 @@ BOARD_USES_LEGACY_MMAP := true
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
+# Dex-preoptimization
+ifeq ($(HOST_OS),linux)
+  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 
@@ -71,6 +80,7 @@ TARGET_GPS_HAL_PATH := device/xiaomi/armani/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 
 # Graphics
+BOARD_EGL_CFG := device/xiaomi/armani/configs/egl.cfg
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
@@ -125,6 +135,8 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RECOVERY_FSTAB := device/xiaomi/armani/rootdir/etc/fstab.armani
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
