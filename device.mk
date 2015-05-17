@@ -242,8 +242,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
-
-# Default.prop overrides to get adb working at boot 
-ADDITIONAL_DEFAULT_PROPERTIES += \
-ro.secure=0 \
-ro.adb.secure=0 \
